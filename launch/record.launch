@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="topic_ins" default="/FOG_INS/NavSatFix /FOG_INS/Twist /FOG_INS/Imu
+                                   /FOG_INS/SystemStatus /FOG_INS/FilterStatus /FOG_INS/StatusVisualize" />
+    <arg name="topic_ntrip" default="/ntrip/gpgga /ntrip/ntrip" />
+
+    <arg name="use_record" default="true" />
+    <arg name="record_path" default="$(env PWD)" />
+    <arg name="record_name" default="FOG_INS" />
+<!--    <arg name="record_topics" default="$(arg topic_ins)"/>-->
+    <arg name="record_topics" default="$(arg topic_ins) $(arg topic_ntrip)"/>
+
+    <node pkg="rosbag" type="record" name="record" output="screen"
+          args="-o $(arg record_path)/$(arg record_name) $(arg record_topics)" if="$(arg use_record)" />
+</launch>
