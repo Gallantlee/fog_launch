@@ -29,12 +29,17 @@
 
     <node pkg="ntrip" type="ntrip" name="ntrip" output="screen" respawn="true">
         <rosparam>
-        server: 172.21.65.15
+        server: gnssdata.or.kr
         port: 2101
-        mountpoint: Zerocity-iMAX
-        username: Lx
-        password: lx
+        mountpoint: SUWN-RTCM31
+        username: gnss
+        password: gnss
         </rosparam>
     </node>
 
+    <node pkg="rndf_server" type="rndf_server_node" name="rndf_server_node" output="screen">
+        <param name="rndf" type="str" value="$(find fog_launch)/rndf/pangyo.rndf" />
+    </node>
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find fog_launch)/rviz/default.rviz" output="screen"/>
 </launch>
