@@ -19,4 +19,22 @@
         </rosparam>
     </node>
 
+    <node pkg="ins_driver" type="ins_interface_node" name="ins_interface" output="screen" respawn="true">
+        <rosparam>
+        port: /dev/ttyUSB1
+        baudrate: 115200
+        use_serial: true
+        </rosparam>
+    </node>
+
+    <node pkg="ntrip" type="ntrip" name="ntrip" output="screen" respawn="true">
+        <rosparam>
+        server: 172.21.65.15
+        port: 2101
+        mountpoint: Zerocity-iMAX
+        username: Lx
+        password: lx
+        </rosparam>
+    </node>
+
 </launch>
